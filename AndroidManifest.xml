@@ -22,6 +22,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.duobitsw.easybuy.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
+        </activity>
+        <activity
+            android:name="com.duobitsw.easybuy.ClienteActivity"
+            android:label="@string/title_activity_cliente" >
+        </activity>
     </application>
 
 </manifest>
