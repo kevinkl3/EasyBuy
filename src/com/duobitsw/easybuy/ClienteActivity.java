@@ -33,8 +33,8 @@ public class ClienteActivity extends Activity {
 		 name = Environment.getExternalStorageDirectory() + "/test.jpg";
 		 
 		 Button btnAction = (Button)findViewById(R.id.btnpic);
-			btnAction.setTextColor(Color.parseColor("#F4D6BC"));
-			btnAction.setBackgroundResource(R.drawable.botoncito_bonito);
+			//btnAction.setTextColor(Color.parseColor("#F4D6BC"));
+			//btnAction.setBackgroundResource(R.drawable.botoncito_bonito);
 		 btnAction.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -62,16 +62,16 @@ public class ClienteActivity extends Activity {
 	       		
 	       		
 		Button btn_carrito = (Button)findViewById(R.id.Carrito);
-		btn_carrito.setTextColor(Color.parseColor("#F4D6BC")); 
-		btn_carrito.setBackgroundResource(R.drawable.botoncito_bonito);
+		//btn_carrito.setTextColor(Color.parseColor("#F4D6BC")); 
+		//btn_carrito.setBackgroundResource(R.drawable.botoncito_bonito);
 		
 		Button btn_reciente = (Button)findViewById(R.id.RecienteC);
-		btn_reciente.setTextColor(Color.parseColor("#F4D6BC"));
-		btn_reciente.setBackgroundResource(R.drawable.botoncito_bonito);
+		//btn_reciente.setTextColor(Color.parseColor("#F4D6BC"));
+		//btn_reciente.setBackgroundResource(R.drawable.botoncito_bonito);
 		
 		Button btn_shop = (Button)findViewById(R.id.Shop);
-		btn_shop.setTextColor(Color.parseColor("#F4D6BC"));
-		btn_shop.setBackgroundResource(R.drawable.botoncito_bonito);
+		//btn_shop.setTextColor(Color.parseColor("#F4D6BC"));
+		//btn_shop.setBackgroundResource(R.drawable.botoncito_bonito);
 		
 		btn_shop.setOnClickListener(new OnClickListener(){
 			public void onClick(View v) {

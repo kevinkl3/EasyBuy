@@ -22,7 +22,7 @@
             android:id="@+id/imageView1"
             android:layout_width="174dp"
             android:layout_height="253dp"
-            android:src="@drawable/logo1" />
+            android:src="@drawable/easybuy" />
 
         <Button
             android:id="@+id/btn_login"
