@@ -1,5 +1,7 @@
 package com.duobitsw.easybuy;
 
+import java.util.List;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -15,14 +17,26 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		Button login_btn = (Button) findViewById(R.id.button1);
+		DatabaseHandler db = new DatabaseHandler(this);
 		
-		login_btn.setOnClickListener(new OnClickListener(){
+		Button login_btn = (Button) findViewById(R.id.button1);
+		Button register_btn = (Button) findViewById(R.id.button2);
+		
+		login_btn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+				Intent i = new Intent(getApplicationContext(),
+						LoginActivity.class);
 				startActivity(i);
 			}
-			
+
+		});
+
+		register_btn.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent i = new Intent(getApplicationContext(),
+						RegisterActivity.class);
+				startActivity(i);
+			}
 		});
 	}
 

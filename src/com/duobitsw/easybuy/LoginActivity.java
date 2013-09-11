@@ -1,5 +1,7 @@
 package com.duobitsw.easybuy;
 
+import java.util.List;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -24,10 +26,10 @@ public class LoginActivity extends Activity {
 	/**
 	 * A dummy authentication store containing known user names and passwords.
 	 * TODO: remove after connecting to a real authentication system.
-	 */
-	private static final String[] DUMMY_CREDENTIALS = new String[] {
-			"foo@example.com:hello", "bar@example.com:world" };
-
+	 */	
+	
+	private static String[] DUMMY_CREDENTIALS;
+	
 	/**
 	 * The default email to populate the email field with.
 	 */
@@ -52,7 +54,16 @@ public class LoginActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		final DatabaseHandler db = new DatabaseHandler(this);
+		List<List<String>> users = db.Query("USERS",null,null,null);
+		this.DUMMY_CREDENTIALS = new String[users.size()];
+		for (int i = 0 ; i<users.size() ; i++){			
+			String userName = users.get(i).get(3);			
+			String pass = users.get(i).get(6);
+			this.DUMMY_CREDENTIALS[i] =userName+":"+pass;
+			System.out.println(DUMMY_CREDENTIALS[i]);
+		}
+		
 		setContentView(R.layout.activity_login);
 
 		// Set up the login form.
