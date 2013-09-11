@@ -19,8 +19,8 @@ public class MainActivity extends Activity {
 		
 		DatabaseHandler db = new DatabaseHandler(this);
 		
-		Button login_btn = (Button) findViewById(R.id.button1);
-		Button register_btn = (Button) findViewById(R.id.button2);
+		Button login_btn = (Button) findViewById(R.id.btn_login);
+		Button register_btn = (Button) findViewById(R.id.btn_registro);
 		
 		login_btn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {

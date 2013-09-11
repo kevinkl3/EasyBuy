@@ -18,13 +18,13 @@
         android:ems="10" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btn_buscar"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/editText1"
         android:layout_toRightOf="@+id/editText1"
-        android:text="Button" />
+        android:text="Buscar" />
 
     <TextView
         android:id="@+id/textView2"
@@ -37,10 +37,10 @@
         android:textSize="@dimen/Titulo2" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/producto_nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
+        android:layout_above="@+id/btn_buscar"
         android:layout_centerHorizontal="true"
         android:text="Buscar "
         android:textSize="@dimen/Titulo2" />
@@ -67,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/textView3"
-        android:layout_toLeftOf="@+id/button1"
+        android:layout_toLeftOf="@+id/btn_buscar"
         android:src="@drawable/paiz" />
 
     <ImageView
@@ -75,11 +75,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/textView3"
-        android:layout_alignRight="@+id/button1"
+        android:layout_alignRight="@+id/btn_buscar"
         android:src="@drawable/ebay" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_qrscan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView3"

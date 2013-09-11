@@ -75,13 +75,9 @@ public class ClienteActivity extends Activity {
 		
 		btn_shop.setOnClickListener(new OnClickListener(){
 			public void onClick(View v) {
-				//Intent intent = new Intent(getApplicationContext(), CaptureActivity.class);
-				//startActivity(intent);
-				
-				Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-				intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
-				startActivityForResult(intent, 0);
-				
+				Intent intent = new Intent(getApplicationContext(), ComprarActivity.class);
+				startActivity(intent);
+			
 			}	
 		});
 		

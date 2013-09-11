@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -37,8 +36,8 @@ public class RegisterActivity extends Activity {
 		setContentView(R.layout.activity_register);
 		final DatabaseHandler db = new DatabaseHandler(this);
 
-		Button aceptar_btn = (Button) findViewById(R.id.button2);
-		Button elegirFoto_btn = (Button) findViewById(R.id.button1);
+		Button aceptar_btn = (Button) findViewById(R.id.btn_pick_foto);
+		Button elegirFoto_btn = (Button) findViewById(R.id.btn_registrarse);
 
 		aceptar_btn.setOnClickListener(new OnClickListener() {
 			@Override

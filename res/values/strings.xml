@@ -7,9 +7,13 @@
     <string name="boton_login">Login</string>
     <string name="boton_registro">Registro</string>
     <string name="title_activity_cliente">Mi Cuenta</string>
-	<string name="title_activity_informacion">InformacionActivity</string>
-	<string name="BotonCarritoLabel">Carrito</string>
-	<string name="CompradoRecientemente">Recientes</string>
-	<string name="Comprar">Comprar</string>
-	<string name="Obtener">Foto</string>
+    <string name="title_activity_register">Registro</string>
+    <string name="title_activity_comprar">Comprar</string>
+    <string name="title_activity_informacion">InformacionActivity</string>
+    <string name="BotonCarritoLabel">Carrito</string>
+    <string name="CompradoRecientemente">Recientes</string>
+    <string name="Comprar">Comprar</string>
+    <string name="Obtener">Foto</string>
+    <string name="title_activity_ver_producto">VerProducto</string>
+	<string name="precio_label">Precio:</string>
 </resources>
