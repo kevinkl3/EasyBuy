@@ -48,7 +48,6 @@ public class ClienteActivity extends Activity {
        			
        			///////////////
    				startActivityForResult(intent, code);
-       			
 			}
 			
 		});      
