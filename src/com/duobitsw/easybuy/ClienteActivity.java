@@ -4,16 +4,19 @@ import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import com.google.zxing.client.android.CaptureActivity;
+import com.google.zxing.client.android.*;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -59,17 +62,29 @@ public class ClienteActivity extends Activity {
 		 
 	       		
 	       		
-		Button bt1 = (Button)findViewById(R.id.Carrito);
-		bt1.setTextColor(Color.parseColor("#F4D6BC")); 
-		bt1.setBackgroundResource(R.drawable.botoncito_bonito);
+		Button btn_carrito = (Button)findViewById(R.id.Carrito);
+		btn_carrito.setTextColor(Color.parseColor("#F4D6BC")); 
+		btn_carrito.setBackgroundResource(R.drawable.botoncito_bonito);
 		
-		Button bt2 = (Button)findViewById(R.id.RecienteC);
-		bt2.setTextColor(Color.parseColor("#F4D6BC"));
-		bt2.setBackgroundResource(R.drawable.botoncito_bonito);
+		Button btn_reciente = (Button)findViewById(R.id.RecienteC);
+		btn_reciente.setTextColor(Color.parseColor("#F4D6BC"));
+		btn_reciente.setBackgroundResource(R.drawable.botoncito_bonito);
 		
-		Button bt3 = (Button)findViewById(R.id.Shop);
-		bt3.setTextColor(Color.parseColor("#F4D6BC"));
-		bt3.setBackgroundResource(R.drawable.botoncito_bonito);
+		Button btn_shop = (Button)findViewById(R.id.Shop);
+		btn_shop.setTextColor(Color.parseColor("#F4D6BC"));
+		btn_shop.setBackgroundResource(R.drawable.botoncito_bonito);
+		
+		btn_shop.setOnClickListener(new OnClickListener(){
+			public void onClick(View v) {
+				//Intent intent = new Intent(getApplicationContext(), CaptureActivity.class);
+				//startActivity(intent);
+				
+				Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+				intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
+				startActivityForResult(intent, 0);
+				
+			}	
+		});
 		
 		
 		//ImageButton bt4= (ImageButton)findViewById(R.id.Imagen);
@@ -79,67 +94,29 @@ public class ClienteActivity extends Activity {
 	
 	//////////
 	 @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	    	
-		 
-	    	  /*
-	    	 
-	    	  Se revisa si la imagen viene de la cámara (TAKE_PICTURE) o de la galería (SELECT_PICTURE)
-	    	 
-	    	if (requestCode == TAKE_PICTURE) {
-	    		/**
-	    		 * Si se reciben datos en el intent tenemos una vista previa (thumbnail)
-	    		 //
-	    		if (data != null) {
-	    			/**
-	    			 * En el caso de una vista previa, obtenemos el extra “data” del intent y 
-	    			 * lo mostramos en el ImageView
-	    			 
-	    			if (data.hasExtra("data")) { 
-	    				ImageView iv = (ImageView)findViewById(R.id.imgView);
-	    				iv.setImageBitmap((Bitmap) data.getParcelableExtra("data"));
-	    			}
-	    		/**
-	    		 * De lo contrario es una imagen completa
-	    		   			
-	    		} else {
-	    			/**
-	    			 * A partir del nombre del archivo ya definido lo buscamos y creamos el bitmap
-	    			 * para el ImageView
-	    			 
-	    			ImageView iv = (ImageView)findViewById(R.id.imgView);
-	    			iv.setImageBitmap(BitmapFactory.decodeFile(name));
-	    			/**
-	    			 * Para guardar la imagen en la galería, utilizamos una conexión a un MediaScanner
-	    			 
-	    			new MediaScannerConnectionClient() {
-	    				private MediaScannerConnection msc = null; {
-	    					msc = new MediaScannerConnection(getApplicationContext(), this); msc.connect();
-	    				}
-	    				public void onMediaScannerConnected() { 
-	    					msc.scanFile(name, null);
-	    				}
-	    				public void onScanCompleted(String path, Uri uri) { 
-	    					msc.disconnect();
-	    				} 
-	    			};				
+			 if (requestCode == 0) {
+			      if (resultCode == RESULT_OK) {
+			         String contents = data.getStringExtra("SCAN_RESULT");
+			         String format = data.getStringExtra("SCAN_RESULT_FORMAT");
+			         // Handle successful scan
+			         Log.d("QRCODE",contents);
+			      } else if (resultCode == RESULT_CANCELED) {
+			         // Handle cancel
+			      }
+			   }
+	    		
+	    	if (requestCode == SELECT_PICTURE){
+	    		 if (resultCode == RESULT_OK) {
+		    		Uri selectedImage = data.getData();
+		    		InputStream is;
+		    		try {
+		    			is = getContentResolver().openInputStream(selectedImage);
+		    	    	BufferedInputStream bis = new BufferedInputStream(is);
+		    	    	Bitmap bitmap = BitmapFactory.decodeStream(bis);            
+		    	    	ImageView iv = (ImageView)findViewById(R.id.imgView);
+		    	    	iv.setImageBitmap(bitmap);						
+		    		} catch (FileNotFoundException e) {}
 	    		}
-	    	/**
-	    	 * Recibimos el URI de la imagen y construimos un Bitmap a partir de un stream de Bytes
-	    	 
-	    	} else
-	    		
-	    		*/
-	    		
-	    		if (requestCode == SELECT_PICTURE){
-	    		Uri selectedImage = data.getData();
-	    		InputStream is;
-	    		try {
-	    			is = getContentResolver().openInputStream(selectedImage);
-	    	    	BufferedInputStream bis = new BufferedInputStream(is);
-	    	    	Bitmap bitmap = BitmapFactory.decodeStream(bis);            
-	    	    	ImageView iv = (ImageView)findViewById(R.id.imgView);
-	    	    	iv.setImageBitmap(bitmap);						
-	    		} catch (FileNotFoundException e) {}
 	    	}
 	    }
 
