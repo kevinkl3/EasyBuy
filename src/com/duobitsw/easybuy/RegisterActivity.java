@@ -23,6 +23,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class RegisterActivity extends Activity {
 
@@ -36,31 +37,49 @@ public class RegisterActivity extends Activity {
 		setContentView(R.layout.activity_register);
 		final DatabaseHandler db = new DatabaseHandler(this);
 
-		Button aceptar_btn = (Button) findViewById(R.id.btn_pick_foto);
-		Button elegirFoto_btn = (Button) findViewById(R.id.btn_registrarse);
+		Button aceptar_btn = (Button) findViewById(R.id.btn_registrarse);
+		Button elegirFoto_btn = (Button) findViewById(R.id.btn_pick_foto);
 
 		aceptar_btn.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v) {
-
+			public void onClick(View v) {								
+				
 				final EditText username = (EditText) findViewById(R.id.UserNameText);
 				final EditText email = (EditText) findViewById(R.id.mailText);
 				final EditText phonenumber = (EditText) findViewById(R.id.numberText);
 				final EditText dirpostal = (EditText) findViewById(R.id.dirpostalText);
 				final EditText password = (EditText) findViewById(R.id.passText);
-				ContentValues values = new ContentValues();
-				values.put("USERNAME", username.getText().toString());
-				call(username.getText().toString(), img);
-				profilepic = "/data/data/com.duobitsw.easybuy/app_Imagenes/"
-						+ username.getText().toString() + ".jpg";
-				values.put("PROFILEPIC", profilepic);
-				values.put("EMAIL", email.getText().toString());
-				values.put("PHONENUMBER", phonenumber.getText().toString());
-				values.put("ADDRESS", dirpostal.getText().toString());
-				values.put("PASS", password.getText().toString());
-				db.InsertCreate("USERS", values);
-				
-				//List<List<String>> X = db.Query("USERS",null,null,null);				
+				if( username.getText().toString().isEmpty()||email.getText().toString().isEmpty()|| phonenumber.getText().toString().isEmpty()
+						|| dirpostal.getText().toString().isEmpty()||password.getText().toString().isEmpty() || img==null)
+				{
+					showToast("Error, Por favor ingrese todos los datos que se le solicitan...");
+				}
+				else
+				{
+					ContentValues values = new ContentValues();				
+					values.put("USERNAME", username.getText().toString());
+					
+					call(username.getText().toString(), img);
+					profilepic = "/data/data/com.duobitsw.easybuy/app_Imagenes/"
+							+ username.getText().toString() + ".png";
+					
+					values.put("PROFILEPIC", profilepic);
+					values.put("EMAIL", email.getText().toString());
+					values.put("PHONENUMBER", phonenumber.getText().toString());
+					values.put("ADDRESS", dirpostal.getText().toString());
+					values.put("PASS", password.getText().toString());
+					
+					db.InsertCreate("USERS", values);	
+					try {
+						this.finalize();
+					} catch (Throwable e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}					
+					Intent i = new Intent(getApplicationContext(),
+							AuthenticationActivity.class);
+					startActivity(i);
+				}				
 			}
 
 		});
@@ -78,11 +97,15 @@ public class RegisterActivity extends Activity {
 				startActivityForResult(intent, code);
 			}
 		});
-
 	}
 
 	public void call(String username, Bitmap img) {
 		guardarImagen(this, username, img);
+	}
+	
+	public void showToast(String msj){
+		Toast.makeText(getApplicationContext(), 
+                msj, Toast.LENGTH_LONG).show();
 	}
 
 	@Override
@@ -102,7 +125,7 @@ public class RegisterActivity extends Activity {
 				BufferedInputStream bis = new BufferedInputStream(is);
 				Bitmap bitmap = BitmapFactory.decodeStream(bis);
 				ImageView iv = (ImageView) findViewById(R.id.imgView);
-				// iv.setImageBitmap(bitmap);
+				iv.setImageBitmap(bitmap);
 				this.img = bitmap;
 			} catch (FileNotFoundException e) {
 			}

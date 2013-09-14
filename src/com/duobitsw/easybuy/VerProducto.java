@@ -11,7 +11,7 @@ public class VerProducto extends Activity {
 	int PRODUCTO_ID;
 	
 	String Datos[][] = {
-			{"Judo de Naranja Sula","Lps. 14.57",""+R.drawable.prod_0},
+			{"Jugo de Naranja Sula","Lps. 14.57",""+R.drawable.prod_0},
 			{"CocaCola","Lps. 17.99",""+R.drawable.prod_1},
 			{"MacBook Pro","$ 500",""+R.drawable.prod_2}
 	};

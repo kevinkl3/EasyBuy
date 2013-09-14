@@ -4,6 +4,7 @@
     android:id="@+id/RelativeLayout1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -16,6 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/Shop"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="2dp"
         android:text="@string/BotonCarritoLabel" />
 
     <Button
@@ -25,25 +27,8 @@
         android:layout_above="@+id/Shop"
         android:layout_alignLeft="@+id/Shop"
         android:layout_alignRight="@+id/Shop"
-        android:layout_marginBottom="29dp"
+        android:layout_marginTop="2dp"
         android:text="@string/CompradoRecientemente" />
-
-    <Button
-        android:id="@+id/btnpic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/RecienteC"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="80dp"
-        android:text="@string/Obtener" />
-
-    <ImageView
-        android:id="@+id/imgView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btnpic"
-        android:layout_centerHorizontal="true"
-        android:src="@android:drawable/ic_menu_camera" />
 
     <Button
         android:id="@+id/Shop"
@@ -51,7 +36,34 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/Carrito"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="22dp"
+        android:layout_marginTop="2dp"
         android:text="@string/Comprar" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="22dp" />
+
+    <ImageView
+        android:id="@+id/imgView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username"
+        android:layout_centerHorizontal="true"
+        android:src="@android:drawable/ic_menu_camera" />
+
+    <TextView
+        android:id="@+id/mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgView"
+        android:layout_centerHorizontal="true"
+        android:text="TextView"
+        android:textSize="15dp" />
 
 </RelativeLayout>

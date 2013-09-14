@@ -3,8 +3,8 @@ package com.duobitsw.easybuy;
 import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.List;
 
-import com.google.zxing.client.android.CaptureActivity;
 import com.google.zxing.client.android.*;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -26,41 +27,31 @@ public class ClienteActivity extends Activity {
 	private static int TAKE_PICTURE = 1;
 	private static int SELECT_PICTURE = 2;	
 	private String name = "";
+	private String id_user;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cliente);
-		 name = Environment.getExternalStorageDirectory() + "/test.jpg";
-		 
-		 Button btnAction = (Button)findViewById(R.id.btnpic);
-			//btnAction.setTextColor(Color.parseColor("#F4D6BC"));
-			//btnAction.setBackgroundResource(R.drawable.botoncito_bonito);
-		 btnAction.setOnClickListener(new View.OnClickListener() {
+
+		 final DatabaseHandler db = new DatabaseHandler(this);		 
 			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent intent =  new Intent(MediaStore.ACTION_IMAGE_CAPTURE); 
-       			int code = 2;//TAKE_PICTURE;
-       			///////////////
-       			intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-   				code = SELECT_PICTURE;
-       			
-       			///////////////
-   				startActivityForResult(intent, code);
+			Bundle extras = getIntent().getExtras();
+			id_user = extras.getString("USER");
+			List<List<String>> User = db.Query("USERS", "id", null, new String[]{id_user});
+			
+			TextView username = (TextView)findViewById(R.id.username);
+			TextView mail = (TextView)findViewById(R.id.mail);
+			username.setText(User.get(0).get(1));
+			mail.setText(User.get(0).get(3));
+			String profilepic = User.get(0).get(2);
+			Bitmap bitmap = BitmapFactory.decodeFile(profilepic);
+			ImageView img = (ImageView) findViewById(R.id.imgView);
+			try {
+				img.setImageBitmap(bitmap);
+			} catch (Exception e) {
 			}
-			
-		});      
-		 
-		 ////////////
-		 
-		 
-		 
-		 
-		 /////////////////
-		 
-	       		
-	       		
+		    	       		       	
 		Button btn_carrito = (Button)findViewById(R.id.Carrito);
 		//btn_carrito.setTextColor(Color.parseColor("#F4D6BC")); 
 		//btn_carrito.setBackgroundResource(R.drawable.botoncito_bonito);
@@ -76,8 +67,7 @@ public class ClienteActivity extends Activity {
 		btn_shop.setOnClickListener(new OnClickListener(){
 			public void onClick(View v) {
 				Intent intent = new Intent(getApplicationContext(), ComprarActivity.class);
-				startActivity(intent);
-			
+				startActivity(intent);			
 			}	
 		});
 		

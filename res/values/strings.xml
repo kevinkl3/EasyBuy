@@ -16,4 +16,6 @@
     <string name="Obtener">Foto</string>
     <string name="title_activity_ver_producto">VerProducto</string>
 	<string name="precio_label">Precio:</string>
+	<string name="title_authentication_activity">Auntenticación</string>
+	
 </resources>

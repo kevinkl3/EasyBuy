@@ -66,6 +66,10 @@
             android:name="com.duobitsw.easybuy.RegisterActivity"
             android:label="@string/title_activity_register" >
         </activity>
+         <activity
+            android:name="com.duobitsw.easybuy.AuthenticationActivity"
+            android:label="@string/title_authentication_activity" >
+        </activity>
     </application>
 
 </manifest>
